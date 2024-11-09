@@ -14,5 +14,16 @@
   "empowermentDescription": "Patients and families can double-check procedures, ensuring peace of mind during medical visits.",
   "accessibleForAllAges": "Accessible for All Ages",
   "accessibleForAllAgesDescription": "Our user-friendly interface is designed for everyone, including older adults.",
-  "footerText": "© 2023 Your Company Name. All rights reserved."
+  "footerText": "© 2023 Your Company Name. All rights reserved.",
+  "Health Check": "Health Check",
+  "Home": "Home",
+  "About Us": "About Us",
+  "Contact": "Contact",
+  "Resources": "Resources",
+  "Contact Professional": "Contact Professional",
+  "Patient Rights": "Patient Rights",
+  "Mental Health": "Mental Health",
+  "Admin Login": "Admin Login",
+  "Dashboard": "Dashboard",
+  "Back to Home": "Back to Home"
 }

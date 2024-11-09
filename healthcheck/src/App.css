@@ -28,7 +28,6 @@
 
 .link {
   color: var(--black);
-
   text-decoration: none;
   margin: 0 15px;
   transition: all 0.3s ease;
@@ -71,9 +70,7 @@ h1 {
   z-index: 10;
 }
 
-.navbar a {
-  @extend .link;
-}
+
 
 .navbar .right {
   display: flex;

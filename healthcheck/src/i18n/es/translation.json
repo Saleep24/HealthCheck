@@ -14,5 +14,16 @@
   "empowermentDescription": "Los pacientes y las familias pueden verificar los procedimientos, asegurando tranquilidad durante las visitas médicas.",
   "accessibleForAllAges": "Accesible para todas las edades",
   "accessibleForAllAgesDescription": "Nuestra interfaz fácil de usar está diseñada para todos, incluidos los adultos mayores.",
-  "footerText": "© 2023 Su nombre de empresa. Todos los derechos reservados."
+  "footerText": "© 2023 Su nombre de empresa. Todos los derechos reservados.",
+  "Health Check": "Chequeo de Salud",
+  "Home": "Inicio",
+  "About Us": "Sobre Nosotros",
+  "Contact": "Contacto",
+  "Resources": "Recursos",
+  "Contact Professional": "Contactar Profesional",
+  "Patient Rights": "Derechos del Paciente",
+  "Mental Health": "Salud Mental",
+  "Admin Login": "Inicio de Sesión de Administrador",
+  "Dashboard": "Tablero",
+  "Back to Home": "Volver a Inicio"
 }

@@ -30,4 +30,14 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
+.navbar-logo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: around;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.5rem; /* Assuming 0.5rem for rounded-lg */
+    padding: 0.3rem;
+}
+
 
