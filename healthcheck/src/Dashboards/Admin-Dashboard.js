@@ -4,9 +4,12 @@ import supabase from '../utils/supabaseClient';
 import CreateCheckListForm from '../components/CreateCheckListForm';
 function AdminDashboard() {
     const [selectedChecklist, setSelectedChecklist] = useState();
-    const [selectedPatient, setSelectedPatient] = useState("Judah");
+    const [selectedPatient, setSelectedPatient] = useState("jdoe");
     const [view, setView] = useState('showChecklists');
     const [patients, setPatients] = useState([]);
+    const [checklists, setChecklists] = useState([]);
+    const [allChecklists, setAllChecklists] = useState([]);
+    const [checklistItems, setChecklistItems] = useState([]);
 
 
     useEffect(() => {
@@ -25,47 +28,55 @@ function AdminDashboard() {
             }
         };
         const fetchChecklists = async () => {
-            const { data, error } = await supabase.from('checklists').select('*').eq('doctor_id', 1);
-            console.log(data);
+            const { data, error } = await supabase
+                .from('checklists')
+                .select('*')
+                .eq('patient_username', selectedPatient);
+
+            if (error) {
+                console.error("Error fetching checklists:", error);
+            } else {
+                setChecklists(data);
+            }
+        };
+        const fetchAllChecklists = async () => {
+            const { data, error } = await supabase
+                .from('checklists')
+                .select('*')
+                .eq('doctor_id', 1);
+            if (error) {
+                console.error("Error fetching all checklists:", error);
+            } else {
+                setAllChecklists(data);
+            }
+        };
+        const fetchChecklistItems = async () => {
+            if (selectedChecklist) {
+                const { data, error } = await supabase
+                    .from('checklist_items')
+                    .select('*')
+                    .eq('checklist_id', 1);
+
+
+                if (error) {
+                    console.error("Error fetching checklist items:", error);
+                } else {
+                    console.log("Fetched checklist items:", data);
+                    setChecklistItems(data);
+                }
+            }
         };
         fetchPatients();
+        fetchAllChecklists();
         fetchChecklists();
-    }, []);
+        fetchChecklistItems();
+    }, [selectedPatient, selectedChecklist]);
 
-    const checklists = [
-        {   username: "Judah",
-            patient: "Patient 1",
-            doctor: "Dr. Judah",
-            title: 'Procedural Checklist for Laparoscopic Appendectomy',
-            lastUsed: 'May 9th, 2024',
-            created: 'November 16th, 2020',
-            completed: 10
-        },
-        {   username: "Judah",
-            patient: "Patient 2",
-            doctor: "Dr. Judah",
-            title: 'Procedural Checklist for Laparoscopic Appendectomy',
-            lastUsed: 'May 9th, 2024',
-            created: 'November 16th, 2020',
-            completed: 10
-        },
-        {
-            username: "Chris",
-            patient: "Patient 3",
-            doctor: "Dr. Chris",
-            title: 'Procedural Checklist for Laparoscopic Appendectomy',
-            lastUsed: 'May 9th, 2024',
-            created: 'November 16th, 2020',
-            completed: 10
-        },
-        // Add more checklists as needed
-    ];
+    
 
    
 
-    // Filter checklists based on selectedPatient
-    const filteredChecklists = checklists.filter(checklist => checklist.username === selectedPatient);
-
+    // Filter checklists based on selectedPatie
     const handleCreateChecklist = () => {
         setView('createChecklist');
     };
@@ -77,6 +88,46 @@ function AdminDashboard() {
 
     const handleShowChecklists = () => {
         setView('showChecklists');
+    };
+
+    const handleChecklistCreated = () => {
+        setView('showChecklists');
+    };
+
+    const toggleCompletionStatus = async (itemId, currentStatus) => {
+        const { data, error } = await supabase
+            .from('checklist_items')
+            .update({ is_completed: !currentStatus })
+            .eq('id', itemId);
+
+        if (error) {
+            console.error("Error updating checklist item:", error);
+        } else {
+            console.log("Updated checklist item:", data);
+            // Update the local state to reflect the change
+            setChecklistItems((prevItems) =>
+                prevItems.map((item) =>
+                    item.id === itemId ? { ...item, is_completed: !currentStatus } : item
+                )
+            );
+        }
+    };
+
+    const resetAllCompletionStatuses = async () => {
+        const { data, error } = await supabase
+            .from('checklist_items')
+            .update({ is_completed: false })
+            .eq('checklist_id', selectedChecklist.id);
+
+        if (error) {
+            console.error("Error resetting checklist items:", error);
+        } else {
+            console.log("Reset checklist items:", data);
+            // Update the local state to reflect the change
+            setChecklistItems((prevItems) =>
+                prevItems.map((item) => ({ ...item, is_completed: false }))
+            );
+        }
     };
 
     return (
@@ -105,8 +156,8 @@ function AdminDashboard() {
                 <div className="created-checklists">
                     <h2 className="text-white text-lg font-bold mb-2">Created Checklists</h2>
                     <ul>
-                        {checklists.map((checklist, index) => (
-                            <li key={index} className="text-white mb-2">{checklist.username} | {checklist.title.slice(0,5)}</li>
+                        {allChecklists.map((checklist, index) => (
+                            <li key={index} className="text-white mb-2">{checklist.username} | {checklist.title}</li>
                         ))}
                     </ul>
                 </div>
@@ -127,7 +178,7 @@ function AdminDashboard() {
 
                 {view === 'showChecklists' && (
                     <ul>
-                        {filteredChecklists.map((checklist, index) => (
+                        {checklists.map((checklist, index) => (
                             <li key={index} className="mb-4 p-4 bg-white shadow rounded">
                                 <div className="w-full">
                                     <strong>Title:</strong> {checklist.title}
@@ -136,18 +187,18 @@ function AdminDashboard() {
                                 <div className="flex flex-row justify-between">
                                     <div className="flex flex-col justify-evenly">
                                         <div>
-                                            <strong>Doctor:</strong> {checklist.doctor}
+                                            <strong>Doctor:</strong> {checklist.doctor_id}
                                         </div>
                                         <div>
-                                            <strong>Patient:</strong> {checklist.patient}
+                                            <strong>Patient:</strong> {checklist.patient_username}
                                         </div>
                                     </div>
                                     <div className="flex flex-col justify-evenly">
                                         <div>
-                                            <strong>Created:</strong> {checklist.created}
+                                        <strong>Created:</strong> {new Date(checklist.created_at).toLocaleString()}
                                         </div>
                                         <div>
-                                            <strong>Last Used:</strong> {checklist.lastUsed}
+                                            <strong>Last Used:</strong> Yesterday
                                         </div>
                                     </div>
                                     <button 
@@ -164,7 +215,7 @@ function AdminDashboard() {
 
                 {view === 'createChecklist' && (
                     <div>
-                        <CreateCheckListForm />
+                        <CreateCheckListForm onSubmit={handleChecklistCreated} />
                     </div>
                 )}
 
@@ -177,12 +228,41 @@ function AdminDashboard() {
                         <div>
                             <strong>Doctor:</strong> {selectedChecklist.doctor}
                         </div>
-                        {/* Add more details or actions for the opened checklist here */}
+                        <div>
+                            <strong>Items:</strong>
+                            <ul>
+                                {checklistItems.length > 0 ? (
+                                    checklistItems.map(({ id, item_description, is_completed }) => (
+                                        <li key={id} className="mb-2 p-2 bg-gray-100 rounded shadow">
+                                            <div className="flex justify-between items-center">
+                                                <div>
+                                                    <strong>Description:</strong> {item_description}
+                                                </div>
+                                                <button
+                                                    className={`ml-4 p-2 rounded ${is_completed ? 'bg-green-500' : 'bg-red-500'} text-white`}
+                                                    onClick={() => toggleCompletionStatus(id, is_completed)}
+                                                >
+                                                    {is_completed ? 'Completed' : 'Mark as Completed'}
+                                                </button>
+                                            </div>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li>No items found.</li>
+                                )}
+                            </ul>
+                        </div>
                         <button 
                             className="bg-blue-500 text-white rounded-lg p-2 hover:bg-blue-700"
                             onClick={handleShowChecklists}
                         >
                             Back to Checklists
+                        </button>
+                        <button 
+                            className="bg-yellow-500 text-white rounded-lg p-2 hover:bg-yellow-700"
+                            onClick={resetAllCompletionStatuses}
+                        >
+                            Submit Completion Statuses
                         </button>
                     </div>
                 )}

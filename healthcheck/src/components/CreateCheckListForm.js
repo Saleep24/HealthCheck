@@ -28,7 +28,7 @@ function CreateChecklistForm({ onSubmit }) {
         };
 
         // Send data to API route
-        const response = await fetch('/api/create-checklist', {
+        const response = await fetch('http://localhost:3001/api/create-checklist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ function CreateChecklistForm({ onSubmit }) {
 
         if (response.ok) {
             console.log('Checklist created successfully');
-            onSubmit(); // Call the onSubmit prop to handle post-submission actions
+            onSubmit();
         } else {
             console.error('Failed to create checklist');
         }
