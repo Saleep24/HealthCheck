@@ -35,7 +35,7 @@ function AboutUs() {
 
     return (
         <div className="about-us">
-            <h1>About Us</h1>
+            <h1>about Us</h1>
             <p>Our mission is to increase communication between doctors and patients by using AI, checklists, and LLMs.</p>
             <div className="team">
                 {teamMembers.map((member, index) => (
