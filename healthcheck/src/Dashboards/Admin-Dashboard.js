@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoMdOpen } from "react-icons/io";
-
+import supabase from '../utils/supabaseClient';
+import CreateCheckListForm from '../components/CreateCheckListForm';
 function AdminDashboard() {
     const [selectedChecklist, setSelectedChecklist] = useState();
-    const [selectedPatient, setSelectedPatient] = useState("judah");
+    const [selectedPatient, setSelectedPatient] = useState("Judah");
     const [view, setView] = useState('showChecklists');
+    const [patients, setPatients] = useState([]);
 
-    const patients = [
-        { username: "Judah", name: 'Patient 1', time: '10:00 AM' },
-        { username: "Chris", name: 'Patient 2', time: '11:00 AM' },
-        { username: "Saleep", name: 'Patient 3', time: '12:00 PM' }
-    ];
+
+    useEffect(() => {
+        const fetchPatients = async () => {
+            const { data, error } = await supabase
+                .from('patients')
+                .select('*')
+                .eq('doctor_id', 1);
+       
+
+            if (error) {
+                console.error("Error fetching patients:", error);
+            } else {
+                console.log("Fetched patients:", data);
+                setPatients(data);
+            }
+        };
+        const fetchChecklists = async () => {
+            const { data, error } = await supabase.from('checklists').select('*').eq('doctor_id', 1);
+            console.log(data);
+        };
+        fetchPatients();
+        fetchChecklists();
+    }, []);
 
     const checklists = [
         {   username: "Judah",
@@ -61,7 +81,7 @@ function AdminDashboard() {
 
     return (
         <div className="flex flex-col md:flex-row h-screen gap-16">
-            <div className="bg-blue-600 md:w-1/6 p-6 ml-3 rounded-lg">
+            <div className="bg-blue-600  p-6 ml-3 rounded-lg w-fit">
                 <div className="profile mb-4">
                     <img src="profile-image-url" alt="Admin" className="profile-image w-24 h-24 rounded-full mx-auto" />
                 </div>
@@ -144,14 +164,7 @@ function AdminDashboard() {
 
                 {view === 'createChecklist' && (
                     <div>
-                        <h3 className="text-gray-800 text-lg font-bold mb-4">Create a New Checklist for {selectedPatient}</h3>
-                        {/* Add form or UI elements for creating a new checklist here */}
-                        <button 
-                            className="bg-blue-500 text-white rounded-lg p-2 hover:bg-blue-700"
-                            onClick={handleShowChecklists}
-                        >
-                            Back to Checklists
-                        </button>
+                        <CreateCheckListForm />
                     </div>
                 )}
 
