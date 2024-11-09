@@ -1,0 +1,33 @@
+.dropdown-menu {
+    margin-top: 10px;
+    position: absolute;
+    right: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+
+.dropdown-menu .link:hover {
+
+    text-decoration: underline;
+
+}
+
+.admin-login {
+    background-color: #1d4ed8; /* Blue background */
+    color: white; /* Text color */
+    padding: 9px; /* 5px padding */
+    margin-left: 10px; /* Space from other nav items */
+    border-radius: 0.5rem; /* Rounded corners */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover effects */
+}
+
+.admin-login:hover {
+    transform: scale(1.1); /* Enlarge the item on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+

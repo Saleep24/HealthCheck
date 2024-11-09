@@ -1,0 +1,18 @@
+{
+  "clientCheckIn": "客户签到",
+  "adminCheckIn": "管理员签到",
+  "clientDescription": "我们的平台将复杂的医疗程序翻译成易于理解的语言，确保患者及其家人能够自信地跟随。",
+  "adminDescription": "管理员可以高效地管理和监督签到过程，确保客户获得顺畅的体验。",
+  "startAssessment": "开始您的免费评估",
+  "adminAccess": "管理员访问",
+  "ourServices": "我们的服务",
+  "servicesDescription": "我们提供一系列服务，旨在使医疗过程对患者及其家人更容易。我们的团队致力于在每一步提供支持和指导。",
+  "whyChooseUs": "为什么选择我们？",
+  "easyToUnderstand": "易于理解",
+  "easyToUnderstandDescription": "我们简化医疗术语，以便每个人都能理解他们的治疗计划。",
+  "empowerment": "赋权",
+  "empowermentDescription": "患者和家人可以双重检查程序，确保在医疗访问期间的安心。",
+  "accessibleForAllAges": "适合所有年龄段",
+  "accessibleForAllAgesDescription": "我们用户友好的界面是为每个人设计的，包括老年人。",
+  "footerText": "© 2023 您的公司名称。版权所有。"
+}

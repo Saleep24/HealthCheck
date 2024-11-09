@@ -1,0 +1,18 @@
+{
+  "clientCheckIn": "Client Check-In",
+  "adminCheckIn": "Admin Check-In",
+  "clientDescription": "Our platform translates complex medical procedures into easy-to-understand language, ensuring that patients and their families can follow along with confidence.",
+  "adminDescription": "Admins can manage and oversee the check-in process efficiently, ensuring a smooth experience for clients.",
+  "startAssessment": "Start Your Free Assessment",
+  "adminAccess": "Admin Access",
+  "ourServices": "Our Services",
+  "servicesDescription": "We offer a range of services designed to make medical processes easier for patients and their families. Our team is dedicated to providing support and guidance every step of the way.",
+  "whyChooseUs": "Why Choose Us?",
+  "easyToUnderstand": "Easy to Understand",
+  "easyToUnderstandDescription": "We simplify medical jargon so that everyone can understand their treatment plans.",
+  "empowerment": "Empowerment",
+  "empowermentDescription": "Patients and families can double-check procedures, ensuring peace of mind during medical visits.",
+  "accessibleForAllAges": "Accessible for All Ages",
+  "accessibleForAllAgesDescription": "Our user-friendly interface is designed for everyone, including older adults.",
+  "footerText": "© 2023 Your Company Name. All rights reserved."
+}

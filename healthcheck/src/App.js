@@ -1,19 +1,27 @@
-import logo from './logo.svg';
+// src/App.js
+import './i18n';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import './index.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './Dashboard';
+import MainPage from './MainPage';
+import Navbar from './components/Navbar'; 
+import About from './About';
+import Contact from './Contact';
+import ContactProfessional from './ContactProfessional';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <header className="flex flex-row justify-around">
-          <Link className="App-link" to="/">Home</Link>
-          <Link className="App-link" to="/dashboard">Dashboard</Link>
-        </header>
+      <div className="bg-white">
+        <Navbar /> {/* Include the Navbar component */}
         <Routes>
+          <Route path="/" element={<MainPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/" element={<p>Welcome to the Home Page!</p>} exact />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact-professional" element={<ContactProfessional />} />
+      
         </Routes>
       </div>
     </Router>

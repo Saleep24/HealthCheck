@@ -1,0 +1,18 @@
+{
+  "clientCheckIn": "Registro de Clientes",
+  "adminCheckIn": "Registro de Administradores",
+  "clientDescription": "Nuestra plataforma traduce procedimientos médicos complejos en un lenguaje fácil de entender, asegurando que los pacientes y sus familias puedan seguir con confianza.",
+  "adminDescription": "Los administradores pueden gestionar y supervisar el proceso de registro de manera eficiente, asegurando una experiencia fluida para los clientes.",
+  "startAssessment": "Comienza tu evaluación gratuita",
+  "adminAccess": "Acceso de Administrador",
+  "ourServices": "Nuestros Servicios",
+  "servicesDescription": "Ofrecemos una variedad de servicios diseñados para facilitar los procesos médicos para los pacientes y sus familias. Nuestro equipo está dedicado a proporcionar apoyo y orientación en cada paso del camino.",
+  "whyChooseUs": "¿Por qué elegirnos?",
+  "easyToUnderstand": "Fácil de entender",
+  "easyToUnderstandDescription": "Simplificamos la jerga médica para que todos puedan entender sus planes de tratamiento.",
+  "empowerment": "Empoderamiento",
+  "empowermentDescription": "Los pacientes y las familias pueden verificar los procedimientos, asegurando tranquilidad durante las visitas médicas.",
+  "accessibleForAllAges": "Accesible para todas las edades",
+  "accessibleForAllAgesDescription": "Nuestra interfaz fácil de usar está diseñada para todos, incluidos los adultos mayores.",
+  "footerText": "© 2023 Su nombre de empresa. Todos los derechos reservados."
+}
