@@ -23,7 +23,7 @@ function Navbar() {
         <div className="flex flex-row justify-around items-center bg-white rounded-lg">
                 <div className="navbar-logo-container">
                     <img src={logo} alt="logo" height={10} width={50} />
-                    <h1 className="text-3xl font-bold text-blue-600">{t('Health Check')}</h1>
+                    <h1 className="text-3xl font-bold text-blue-600">Health Check</h1>
                 </div>
             </div>
       {location.pathname  !== '/patient-dashboard' && location.pathname !== '/admin-dashboard' ? (

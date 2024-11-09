@@ -3,7 +3,6 @@ import './i18n';
 import './App.css';
 import './index.css';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Dashboard from './Dashboard';
 import MainPage from './MainPage';
 import Navbar from './components/Navbar'; 
 import Contact from './Contact';
@@ -25,7 +24,6 @@ function App() {
       {location.pathname !== '/login/admin' && location.pathname !== '/login/patient' && <Navbar />}
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/contact-professional" element={<ContactProfessional />} />
