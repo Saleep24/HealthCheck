@@ -259,7 +259,7 @@ function AdminDashboard() {
                             Back to Checklists
                         </button>
                         <button 
-                            className="bg-yellow-500 text-white rounded-lg p-2 hover:bg-yellow-700"
+                            className="bg-yellow-500 text-white rounded-lg p-2 ml-4 hover:bg-yellow-700"
                             onClick={resetAllCompletionStatuses}
                         >
                             Submit Completion Statuses
