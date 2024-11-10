@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { IoMdOpen } from "react-icons/io";
 import supabase from '../utils/supabaseClient';
 import CreateCheckListForm from '../components/CreateCheckListForm';
+import docotorImage from '../img/Doctor1.jpg';
+import patientImage from '../img/patient.png';
 function AdminDashboard() {
     const [selectedChecklist, setSelectedChecklist] = useState();
     const [selectedPatient, setSelectedPatient] = useState("jdoe");
@@ -55,7 +57,7 @@ function AdminDashboard() {
                 const { data, error } = await supabase
                     .from('checklist_items')
                     .select('*')
-                    .eq('checklist_id', 1);
+                    .eq('checklist_id', selectedChecklist.id);
 
 
                 if (error) {
@@ -134,7 +136,7 @@ function AdminDashboard() {
         <div className="flex flex-col md:flex-row h-screen gap-16">
             <div className="bg-blue-600  p-6 ml-3 rounded-lg w-fit">
                 <div className="profile mb-4">
-                    <img src="profile-image-url" alt="Admin" className="profile-image w-24 h-24 rounded-full mx-auto" />
+                    <img src={docotorImage} alt="Admin" className="profile-image w-24 h-24 rounded-full mx-auto" />
                 </div>
                 <div className="patients-today mb-4">
                     <h2 className="text-white text-lg  font-bold mb-2">Patients Today</h2>
@@ -165,7 +167,7 @@ function AdminDashboard() {
             <div className="bg-slate-200 md:w-2/3 p-4 overflow-y-auto rounded-lg">
                 <div className="flex justify-between">
                     <div className="flex items-center">
-                        <img src="profile-image-url" alt="Admin" className="profile-image w-24 h-24 rounded-full mx-auto" />
+                        <img src={patientImage} alt="Admin" className="profile-image w-20 h-20 rounded-full mx-auto mb-4 mr-4" />
                         <h2 className="text-gray-800 text-lg font-bold mb-4">Checklists for {selectedPatient}</h2>
                     </div>
                     <button 
@@ -226,11 +228,10 @@ function AdminDashboard() {
                             <strong>Title:</strong> {selectedChecklist.title}
                         </div>
                         <div>
-                            <strong>Doctor:</strong> {selectedChecklist.doctor}
+                            <strong className="mb-5">Doctor: </strong> Mr. Smith
                         </div>
                         <div>
-                            <strong>Items:</strong>
-                            <ul>
+                            <ul className="list-decimal pl-5 mt-4">
                                 {checklistItems.length > 0 ? (
                                     checklistItems.map(({ id, item_description, is_completed }) => (
                                         <li key={id} className="mb-2 p-2 bg-gray-100 rounded shadow">

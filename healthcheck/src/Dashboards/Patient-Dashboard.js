@@ -24,7 +24,7 @@ function PatientDashboard() {
                 const { data, error } = await supabase
                     .from('checklist_items')
                     .select('*')
-                    .eq('checklist_id', 1);
+                    .eq('checklist_id', selectedChecklist.id);
 
 
                 if (error) {
@@ -56,7 +56,7 @@ function PatientDashboard() {
                     {checklists.map((checklist) => (
                         <li key={checklist.id} onClick={() => handleOpenChecklist(checklist)}>
                            <button 
-                                    className={` w-[200px] text-white p-2 rounded ${selectedChecklist === checklist.id ? 'bg-blue-700' : 'bg-blue-500 hover:bg-blue-700'}`}
+                                    className={` w-[200px] text-white p-2 mb-2 rounded ${selectedChecklist === checklist.id ? 'bg-blue-700' : 'bg-blue-500 hover:bg-blue-700'}`}
                                     onClick={() => setSelectedChecklist(checklist.id)}
                                 >
                                     {checklist.title}
@@ -68,21 +68,41 @@ function PatientDashboard() {
            <hr></hr>
         </div>
         <div className="bg-slate-200 md:w-2/3 p-4 overflow-y-auto rounded-lg">
+                    <p className="text-gray-600 font-bold mb-2">User: Jdoe</p>
                 {view === 'openChecklist' && selectedChecklist ? (
                     <div>
                         <h2 className="text-gray-800 text-lg font-bold mb-4">{selectedChecklist.title}</h2>
-                        <p>{selectedChecklist.description}</p>
+                        <hr className="my-2 bg-blue-100"></hr>
+                        <div className="flex justify-between gap-4">
+                            <div>
+                            <p className="text-gray-800" >Doctor: Mr. Smith</p>
+                            <p className="text-gray-600">Completed: 1/10</p>
+                            </div>
+                        
+                            <div>
+                            <p className="text-gray-600">Date Created: {new Date(selectedChecklist.created_at).toLocaleString().slice(0, 9)}</p>
+                            <p className="text-gray-600">Last Used: Yesterday</p>
+                            </div>
+                            
+                        </div>
+                        <ol className="list-decimal pl-5 mt-4">
                         {(checklistItems.map(({ id, item_description, is_completed }) => (
-                                        <li key={id} className="mb-2 p-2 bg-gray-100 rounded shadow">
-                                            <div className="flex justify-between items-center">
+                                        <li key={id} className="mb-2 p-2 bg-gray-100 rounded  shadow">
+                                            <div className="flex justify-between h-[50px] items-center">
                                                 <div>
                                                     <strong>Description:</strong> {item_description}
                                                 </div>
-                                             {is_completed ? <p className="text-green-500">Completed</p> : <p className="text-red-500">Not Completed</p>}
+                                                <div className="flex justify-end items-center">
+                                                    {is_completed ? <p className="text-green-500">Completed</p> : <p className="text-red-500">Not Completed</p>}
+                                                </div>
                                             </div>
+                                           
+                       
                                         </li>
                                     ))
                                 )}
+                        </ol>
+                        
                         {/* Add more details about the checklist here */}
                     </div>
                 ) : (
