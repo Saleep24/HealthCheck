@@ -12,7 +12,7 @@ function AboutUs() {
         {
             name: 'Judah Boyce',
             role: 'Frontend Developer',
-            description: 'A brief description about you.',
+            description: 'A CS full-stack student interested in everything',
             linkedin: 'https://www.linkedin.com/in/judah-boyce-1a0b24301/',
             github: '#',
             image: JudahImage
@@ -20,7 +20,7 @@ function AboutUs() {
         {
             name: 'Saleep',
             role: 'Frontend Developer',
-            description: 'A brief description about teammate 1.',
+            description: 'A CS student interested in ML, data science and quant finance',
             linkedin: 'https://www.linkedin.com/in/saleepshrestha/',
             github: '#',
             image: SaleepImage
@@ -28,15 +28,15 @@ function AboutUs() {
         {
             name: 'Christopher',
             role: 'Backend Developer',
-            description: 'A brief description about teammate 2.',
+            description: 'A CS freshman interested in web developement and API',
             linkedin: 'https://www.linkedin.com/in/christopherkhaing/',
             github: '#',
             image: ChristopherImage
-        },
+        },  
         {
             name: 'Jerry',
             role: 'Backend Developer',
-            description: 'A brief description about teammate 3.',
+            description: 'An electrical and computer engineering student experienced in chatbot building and machine learning implementations',
             linkedin: 'https://www.linkedin.com/in/ximu-du-794581229/',
             github: '#',
             image: JerryImage

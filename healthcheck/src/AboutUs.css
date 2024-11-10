@@ -92,3 +92,18 @@
 .social-icons a:hover {
     color: #4682A9;
 }
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover .card {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-link .card {
+    cursor: pointer;
+}

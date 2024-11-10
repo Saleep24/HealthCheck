@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import supabase from '../utils/supabaseClient';
+import image from '../img/jerry.jpeg'
 
 function PatientDashboard() {
-
+    const [selectedLanguage, setSelectedLanguage] = useState('es'); // Default to Spanish
     const [checklists, setChecklists] = useState([]);
     const [selectedChecklist, setSelectedChecklist] = useState();    
     const [view, setView] = useState('showChecklists');
     const [checklistItems, setChecklistItems] = useState([]);
-
+    const [translatedChecklistItems, setTranslatedChecklistItems] = useState([]);
+    const [isTranslated, setIsTranslated] = useState(false);
 
     
     useEffect(() => {
@@ -35,9 +37,47 @@ function PatientDashboard() {
                 }
             }
         };
+
         fetchChecklistItems();
         fetchChecklists();        
     }, [selectedChecklist]); 
+
+    const translateCheckList = async (selectedChecklist, checklistItems, selectedLanguage) => {
+        try {
+            console.log(checklistItems, selectedChecklist, selectedLanguage);
+            const response = await fetch('http://localhost:3001/translate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    selectedChecklist: selectedChecklist.title,
+                    checklistItems: checklistItems,
+                    selectedLanguage: selectedLanguage
+                }),
+            });
+
+            const result = await response.json();
+            console.log(result.translation);
+
+            // Split the translated text into an array of items
+            const lines = result.translation.split('\n');
+
+// Filter out the undefined title line and any empty lines
+            const items = lines
+                .filter(line => line.startsWith('-')) // Keep only lines that start with "-"
+                .map(line => line.trim().slice(2));  
+
+            setIsTranslated(true);
+            setTranslatedChecklistItems(items);
+        } catch (error) {
+            console.error('Error translating checklist:', error);
+        }
+    };
+
+    const handleLanguageChange = (event) => {
+        setSelectedLanguage(event.target.value);
+    };
 
     const handleOpenChecklist = (checklist) => {
         setSelectedChecklist(checklist);
@@ -48,7 +88,7 @@ function PatientDashboard() {
 <div className="flex flex-col md:flex-row h-screen gap-16">
         <div className="bg-blue-600  md:p-6 ml-3 rounded-lg  md:w-fit">
             <div className="profile mb-4">
-                <img src="profile-image-url" alt="Admin" className="profile-image w-24 h-24 rounded-full mx-auto" />
+                <img src={image} alt="Admin" className="profile-image w-24 h-24 rounded-full mx-auto" />
             </div>
             <div className="patients-today mb-4">
                 <h2 className="text-white text-lg  font-bold mb-2">Appointments Today</h2>
@@ -57,7 +97,7 @@ function PatientDashboard() {
                         <li key={checklist.id} onClick={() => handleOpenChecklist(checklist)}>
                            <button 
                                     className={` w-[200px] text-white p-2 mb-2 rounded ${selectedChecklist === checklist.id ? 'bg-blue-700' : 'bg-blue-500 hover:bg-blue-700'}`}
-                                    onClick={() => setSelectedChecklist(checklist.id)}
+                                    onClick={() => { setSelectedChecklist(checklist.id); setIsTranslated(false);}}
                                 >
                                     {checklist.title}
                                 </button>
@@ -71,7 +111,21 @@ function PatientDashboard() {
                     <p className="text-gray-600 font-bold mb-2">User: Jdoe</p>
                 {view === 'openChecklist' && selectedChecklist ? (
                     <div>
+                        <div className="flex justify-between">
                         <h2 className="text-gray-800 text-lg font-bold mb-4">{selectedChecklist.title}</h2>
+                        <div>
+                            <select value={selectedLanguage} onChange={handleLanguageChange} className="mr-2">
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="zh">Chinese</option>
+                                {/* Add more languages as needed */}
+                            </select>
+                            <button className="bg-blue-500 text-white p-2 rounded" onClick={() => translateCheckList(selectedChecklist, checklistItems, selectedLanguage)}>
+                                Translate
+                            </button>
+                        </div>
+                        </div>
                         <hr className="my-2 bg-blue-100"></hr>
                         <div className="flex justify-between gap-4">
                             <div>
@@ -86,7 +140,15 @@ function PatientDashboard() {
                             
                         </div>
                         <ol className="list-decimal pl-5 mt-4">
-                        {(checklistItems.map(({ id, item_description, is_completed }) => (
+                        {(isTranslated ? translatedChecklistItems.map((item) => (
+                            <li key={item} className="mb-2 p-2 bg-gray-100 rounded  shadow">
+                                <div className="flex justify-between h-[50px] items-center">
+                                    <div>
+                                        <strong>Description:</strong> {item}
+                                    </div>
+                                </div>
+                            </li>
+                        )) : checklistItems.map(({ id, item_description, is_completed }) => (
                                         <li key={id} className="mb-2 p-2 bg-gray-100 rounded  shadow">
                                             <div className="flex justify-between h-[50px] items-center">
                                                 <div>
