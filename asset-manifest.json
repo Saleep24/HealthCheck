@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Saleep24/HealthCheck/static/css/main.18c875d6.css",
-    "main.js": "/Saleep24/HealthCheck/static/js/main.e8e443ff.js",
-    "static/js/952.20fb0b16.chunk.js": "/Saleep24/HealthCheck/static/js/952.20fb0b16.chunk.js",
-    "static/js/453.038665e8.chunk.js": "/Saleep24/HealthCheck/static/js/453.038665e8.chunk.js",
-    "static/media/Doctor1.jpg": "/Saleep24/HealthCheck/static/media/Doctor1.6662fd55708aab7b1cd8.jpg",
-    "static/media/patient.png": "/Saleep24/HealthCheck/static/media/patient.b4874cc6f0f8072bbd9f.png",
-    "static/media/Judah.jpeg": "/Saleep24/HealthCheck/static/media/Judah.2bd4e02b56a4b6eee37b.jpeg",
-    "static/media/Chris.jpeg": "/Saleep24/HealthCheck/static/media/Chris.44529b557715e0db59e1.jpeg",
-    "static/media/Saleep.jpeg": "/Saleep24/HealthCheck/static/media/Saleep.dcf283367f97241bdf75.jpeg",
-    "static/media/jerry.jpeg": "/Saleep24/HealthCheck/static/media/jerry.a471557c978664e6ed96.jpeg",
-    "static/media/happyPatient.jpg": "/Saleep24/HealthCheck/static/media/happyPatient.2f37191d35e4c42e3094.jpg",
-    "static/media/logo.png": "/Saleep24/HealthCheck/static/media/logo.914cc93bcc64a3ea6f6f.png",
-    "index.html": "/Saleep24/HealthCheck/index.html",
-    "main.18c875d6.css.map": "/Saleep24/HealthCheck/static/css/main.18c875d6.css.map",
-    "main.e8e443ff.js.map": "/Saleep24/HealthCheck/static/js/main.e8e443ff.js.map",
-    "952.20fb0b16.chunk.js.map": "/Saleep24/HealthCheck/static/js/952.20fb0b16.chunk.js.map",
-    "453.038665e8.chunk.js.map": "/Saleep24/HealthCheck/static/js/453.038665e8.chunk.js.map"
+    "main.css": "/HealthCheck/static/css/main.18c875d6.css",
+    "main.js": "/HealthCheck/static/js/main.70ec6b84.js",
+    "static/js/952.20fb0b16.chunk.js": "/HealthCheck/static/js/952.20fb0b16.chunk.js",
+    "static/js/453.038665e8.chunk.js": "/HealthCheck/static/js/453.038665e8.chunk.js",
+    "static/media/Doctor1.jpg": "/HealthCheck/static/media/Doctor1.6662fd55708aab7b1cd8.jpg",
+    "static/media/patient.png": "/HealthCheck/static/media/patient.b4874cc6f0f8072bbd9f.png",
+    "static/media/Judah.jpeg": "/HealthCheck/static/media/Judah.2bd4e02b56a4b6eee37b.jpeg",
+    "static/media/Chris.jpeg": "/HealthCheck/static/media/Chris.44529b557715e0db59e1.jpeg",
+    "static/media/Saleep.jpeg": "/HealthCheck/static/media/Saleep.dcf283367f97241bdf75.jpeg",
+    "static/media/jerry.jpeg": "/HealthCheck/static/media/jerry.a471557c978664e6ed96.jpeg",
+    "static/media/happyPatient.jpg": "/HealthCheck/static/media/happyPatient.2f37191d35e4c42e3094.jpg",
+    "static/media/logo.png": "/HealthCheck/static/media/logo.914cc93bcc64a3ea6f6f.png",
+    "index.html": "/HealthCheck/index.html",
+    "main.18c875d6.css.map": "/HealthCheck/static/css/main.18c875d6.css.map",
+    "main.70ec6b84.js.map": "/HealthCheck/static/js/main.70ec6b84.js.map",
+    "952.20fb0b16.chunk.js.map": "/HealthCheck/static/js/952.20fb0b16.chunk.js.map",
+    "453.038665e8.chunk.js.map": "/HealthCheck/static/js/453.038665e8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.18c875d6.css",
-    "static/js/main.e8e443ff.js"
+    "static/js/main.70ec6b84.js"
   ]
 }
